@@ -82,7 +82,7 @@ CreateKernelZip ()
                 adb remount
                 sleep 2
                 echo Sending modules
-                for filename in system/modules/* ; do
+                for filename in system/lib/modules/* ; do
                     echo Sending $filename to /system/modules
                     if adb push $filename /system/modules ; then
                         echo "Rebooting again"
@@ -128,10 +128,10 @@ SenModulesToCMDevice()
     # use for loop read all modules but not the last
     for (( i=0; i<${tLen}-1; i++ ));
     do
-      echo '    device/samsung/'${BOARD}'/'${MODULEF[$i]}':system/modules/'${MODULEF[$i]}' \' >>$DEVICE_CM_DIR/KernelModules.mk
+      echo '    device/samsung/'${BOARD}'/'${MODULEF[$i]}':system/lib/modules/'${MODULEF[$i]}' \' >>$DEVICE_CM_DIR/KernelModules.mk
       echo ${MODULEF[$i]}
     done
-    echo '    device/samsung/'${BOARD}'/'${MODULEF[$i]}':system/modules/'${MODULEF[$i]} >>$DEVICE_CM_DIR/KernelModules.mk
+    echo '    device/samsung/'${BOARD}'/'${MODULEF[$i]}':system/lib/modules/'${MODULEF[$i]} >>$DEVICE_CM_DIR/KernelModules.mk
     cd $CURDIR
 }
 
